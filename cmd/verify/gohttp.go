@@ -10,7 +10,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "hello mister")
 }
 func main() {
-	http.HandleFunc("/api/v1", handler)
+	http.HandleFunc("/api/gohttp", handler)
 
 	http.ListenAndServe("0.0.0.0:8080", nil)
 }

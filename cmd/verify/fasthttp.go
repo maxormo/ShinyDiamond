@@ -12,7 +12,7 @@ func HandleFastHTTP(ctx *fasthttp.RequestCtx) {
 
 func startFastHttp() {
 	r := router.New()
-	r.GET("/api/v1", HandleFastHTTP)
+	r.GET("/api/fasthttp", HandleFastHTTP)
 	fasthttp.ListenAndServe("0.0.0.0:8080", r.Handler)
 }
 
