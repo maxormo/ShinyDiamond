@@ -2,15 +2,18 @@ package main
 
 import (
 	"fmt"
+	"github.com/fasthttp/router"
 	"github.com/valyala/fasthttp"
 )
 
 func HandleFastHTTP(ctx *fasthttp.RequestCtx) {
-	fmt.Println(ctx.Request.Body())
+	fmt.Fprintln(ctx.Response.BodyWriter(), "hello mister")
 }
 
 func startFastHttp() {
-	fasthttp.ListenAndServe("8080", HandleFastHTTP)
+	r := router.New()
+	r.GET("/api/v1", HandleFastHTTP)
+	fasthttp.ListenAndServe("0.0.0.0:8080", r.Handler)
 }
 
 func main() {

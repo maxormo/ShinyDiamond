@@ -2,19 +2,15 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	body, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(body)
+
+	fmt.Fprintln(w, "hello mister")
 }
 func main() {
-	http.HandleFunc("/", handler)
+	http.HandleFunc("/api/v1", handler)
 
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe("0.0.0.0:8080", nil)
 }
